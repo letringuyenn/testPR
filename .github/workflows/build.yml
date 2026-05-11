@@ -1,0 +1,26 @@
+name: CI Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4 # Updated to v4 to ensure latest security and features
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4 # Updated to v4 for compatibility with Node.js 20+
+      with:
+        node-version: 20 # Updated to Node.js 20 LTS to address deprecation warnings
+
+    - name: Run npm install
+      run: npm install
+      working-directory: ./app # CRITICAL FIX: Assumed subdirectory containing package.json. Adjust './app' to the actual path (e.g., './frontend', './src')
