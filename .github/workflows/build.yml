@@ -13,14 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4 # Updated to v4 to ensure latest security and features
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4 # Updated to v4 for compatibility with Node.js 20+
-      with:
-        node-version: 20 # Updated to Node.js 20 LTS to address deprecation warnings
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - name: Run npm install
-      run: npm install
-      working-directory: ./app # CRITICAL FIX: Assumed subdirectory containing package.json. Adjust './app' to the actual path (e.g., './frontend', './src')
+      - name: npm install
+        run: npm install
+        working-directory: frontend
