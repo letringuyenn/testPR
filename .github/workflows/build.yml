@@ -1,6 +1,12 @@
-name: Node.js Build
+name: CI/CD Build
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -9,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Use Node.js 18
+    - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: 18
